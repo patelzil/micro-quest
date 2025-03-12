@@ -2,6 +2,11 @@
 
 MicroQuest is an AI-powered tool that transforms a user's spare time into a spontaneous, hyper-local adventure. By taking simple inputs—location, available time, and interests—it leverages an LLM to craft a bite-sized itinerary with specific stops, activities, and quirky details.
 
+![image](https://github.com/user-attachments/assets/1182802b-1f67-4a9c-9855-9ff403781bf4)
+![image](https://github.com/user-attachments/assets/ed8f82f4-c46d-4526-8840-0e64757ea982)
+
+
+
 ## Features
 
 - **Adventure Generation**: Users provide location, time window, and interests (e.g., "Toronto, 3 hours, sports") and receive a clean, readable itinerary
