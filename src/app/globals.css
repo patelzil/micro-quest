@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #3D52A0;
+  --secondary: #7091E6;
+  --accent: #8697C4;
+  --highlight: #ADBBDA;
+  --background: #EDE8F5;
+  
+  /* Dark mode colors */
+  --dark-bg: #0F1A2A;
+  --dark-surface: #1A2A42;
+  --dark-primary: #7091E6;
+  --dark-secondary: #8697C4;
+  --dark-text: #F5F7FF;
+  
+  /* 3D effect variables - bluer shadow */
+  --shadow-color: 223deg 50% 70%;
+  --shadow-elevation-low: 0.5px 0.8px 1px hsl(var(--shadow-color) / 0.45),
+    0.8px 1.2px 1.5px -1px hsl(var(--shadow-color) / 0.45),
+    1.5px 3px 3.5px -2px hsl(var(--shadow-color) / 0.45);
+  --shadow-elevation-medium: 0.5px 0.8px 1px hsl(var(--shadow-color) / 0.48),
+    1.2px 2.4px 3px -0.6px hsl(var(--shadow-color) / 0.48),
+    3px 6px 7.5px -1.2px hsl(var(--shadow-color) / 0.48),
+    7px 14px 17.5px -1.8px hsl(var(--shadow-color) / 0.48);
+  --shadow-elevation-high: 0.5px 0.8px 1px hsl(var(--shadow-color) / 0.45),
+    2.3px 4.5px 5.6px -0.3px hsl(var(--shadow-color) / 0.45),
+    4.3px 8.5px 10.6px -0.5px hsl(var(--shadow-color) / 0.45),
+    7px 14px 17.5px -0.8px hsl(var(--shadow-color) / 0.45),
+    11.2px 22.3px 28px -1.1px hsl(var(--shadow-color) / 0.45),
+    16.8px 33.5px 42px -1.3px hsl(var(--shadow-color) / 0.45),
+    24px 48px 60px -1.6px hsl(var(--shadow-color) / 0.45),
+    35px 70px 88px -1.9px hsl(var(--shadow-color) / 0.45);
+    
+  /* Dark mode shadow */
+  --shadow-color-dark: 223deg 70% 40%;
+}
+
+@layer base {
+  body {
+    @apply transition-colors duration-200;
+    color: var(--primary);
+    background: var(--background);
+  }
+  
+  .dark body {
+    color: var(--dark-text);
+    background: var(--dark-bg);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .input-field {
+    @apply w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-[#7091E6] focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white;
+    transform: translateY(0);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .input-field:focus {
+    box-shadow: var(--shadow-elevation-low);
+    transform: translateY(-1px);
+  }
+  
+  .dark .input-field:focus {
+    box-shadow: 0.5px 0.8px 1px hsl(var(--shadow-color-dark) / 0.55),
+      0.8px 1.2px 1.5px -1px hsl(var(--shadow-color-dark) / 0.55),
+      1.5px 3px 3.5px -2px hsl(var(--shadow-color-dark) / 0.55);
+  }
+  
+  .btn-primary {
+    @apply bg-[#7091E6] hover:bg-opacity-90 text-white font-bold py-3 px-4 rounded-md transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+    box-shadow: var(--shadow-elevation-low);
+    transform: translateY(0);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .btn-primary:hover:not(:disabled) {
+    box-shadow: var(--shadow-elevation-medium);
+    transform: translateY(-2px);
+  }
+  
+  .btn-primary:active:not(:disabled) {
+    box-shadow: var(--shadow-elevation-low);
+    transform: translateY(0);
+  }
+  
+  .dark .btn-primary {
+    @apply bg-[#7091E6] hover:bg-[#8697C4];
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-[#3D52A0] border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-bold py-3 px-4 rounded-md transition duration-200;
+    box-shadow: var(--shadow-elevation-low);
+    transform: translateY(0);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .btn-secondary:hover {
+    box-shadow: var(--shadow-elevation-medium);
+    transform: translateY(-2px);
+  }
+  
+  .btn-secondary:active {
+    box-shadow: var(--shadow-elevation-low);
+    transform: translateY(0);
+  }
+  
+  .container-narrow {
+    @apply max-w-xl mx-auto px-4;
+  }
+  
+  .container-wide {
+    @apply max-w-4xl mx-auto px-4;
+  }
+  
+  .card {
+    @apply bg-white dark:bg-gray-800 p-6 border border-gray-100 dark:border-gray-700 rounded-md;
+    box-shadow: var(--shadow-elevation-low);
+    transform: translateY(0);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .dark .card {
+    background: var(--dark-surface);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .card:hover {
+    box-shadow: var(--shadow-elevation-medium);
+    transform: translateY(-3px);
+  }
+  
+  /* 3D effect for adventure stops */
+  .adventure-stop {
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  .adventure-stop::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(112, 145, 230, 0.15) 0%, rgba(112, 145, 230, 0) 100%);
+    transform: translateZ(-1px);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  
+  .dark .adventure-stop::before {
+    background: linear-gradient(135deg, rgba(112, 145, 230, 0.2) 0%, rgba(112, 145, 230, 0.05) 100%);
+  }
+}
